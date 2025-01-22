@@ -1,0 +1,16 @@
+# .gitignore
+
+# Ignore node_modules in both server and client
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build/Dist folders
+build/
+dist/
+
+# Optional OS files
+.DS_Store
+
+# Environmental/Secret files
+.env
