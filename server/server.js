@@ -17,20 +17,15 @@ db.connect();
 
 
 
-// Example route
+
 app.get('/notes', (req, res) => {
-  // In a real app, you'd fetch this data from a database or external API.
-  // const mockNotes = [
-  //   { id: 1, title: 'Book A', content: 'Note for Book A...' },
-  //   { id: 2, title: 'Book B', content: 'Note for Book B...' },
-  // ];
-  db.query("SELECT * FROM notes", (err, res) => {
+  db.query("SELECT * FROM notes", (err, dbresult) => {
     if(err) {
       console.log("Error fetching data", err.stack)
     }  const mockNotes = [];
     // Loop through all rows and format them
-    for (let i = 0; i < result.rows.length; i++) {
-      const row = result.rows[i];
+    for (let i = 0; i < dbresult.rows.length; i++) {
+      const row = dbresult.rows[i];
       mockNotes.push({
         id: row.id,
         title: row.book_title,
@@ -38,7 +33,8 @@ app.get('/notes', (req, res) => {
         content: row.content
       });
     }
-
+    console.log(mockNotes);
+    
     // Send the response to the client
     res.json(mockNotes);
   })
