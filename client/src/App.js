@@ -1,8 +1,9 @@
 import React from "react"
+import BookNotesPage from "./pages/BookNoteItem"
 
 function App() {
     return <div>
-        <div></div>
+        <BookNotesPage />
     </div>
 }
 
