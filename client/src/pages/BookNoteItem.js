@@ -12,6 +12,9 @@ function BookNotesPage() {
       .catch((err) => console.error(err));
   }, []);
 
+
+  console.log(getBookNotes())
+
   return (
     <div>
       <h2>Book Notes</h2>

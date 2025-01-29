@@ -33,8 +33,6 @@ app.get('/notes', (req, res) => {
         content: row.content
       });
     }
-    console.log(mockNotes);
-    
     // Send the response to the client
     res.json(mockNotes);
   })
