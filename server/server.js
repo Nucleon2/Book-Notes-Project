@@ -15,7 +15,9 @@ const app = express();
 
 db.connect();
 
-
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 
 app.get('/notes', (req, res) => {
@@ -39,9 +41,7 @@ app.get('/notes', (req, res) => {
 
 });
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+
 
 
 // Start the server

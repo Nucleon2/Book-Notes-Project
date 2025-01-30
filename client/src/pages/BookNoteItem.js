@@ -4,16 +4,29 @@ import { getBookNotes } from '../services/api';
 
 function BookNotesPage() {
   const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // fetch data from the server or an external API
-    getBookNotes()
-      .then((res) => setNotes(res))
-      .catch((err) => console.error(err));
-  }, []);
+    const fetchNotes = async () => {
+      try {
+        const data = await getBookNotes();
+        setNotes(data);
+      } catch (err) {
+        setError(err.message);
+        console.error('Error fetching notes:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNotes();
+  }, []); // Empty dependency array means this runs once on mount
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
 
-  console.log(getBookNotes())
 
   return (
     <div>
