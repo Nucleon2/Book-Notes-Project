@@ -2,11 +2,20 @@ import React, { useEffect, useState } from 'react';
 import BookNoteItem from '../components/BookNoteItem';
 import { getBookNotes } from '../services/api';
 
+
 function BookNotesPage() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_BASE_URL = 'http://localhost:5000';
+
+  async function getBookNotes() {
+    const response = await axios.get(`${API_BASE_URL}/notes`);
+    return response.data; // Assuming your server returns an array of notes
+  }
+
+  
   useEffect(() => {
     const fetchNotes = async () => {
       try {
