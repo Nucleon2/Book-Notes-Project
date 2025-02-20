@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
-app.get('/notes', (req, res) => {
+app.post('/notes', (req, res) => {
   db.query("SELECT * FROM notes", (err, dbresult) => {
     if(err) {
       console.log("Error fetching data", err.stack)
